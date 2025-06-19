@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -137,14 +138,8 @@
       const key = old + "|" + nw + "|" + plan;
       
       
-  let raw = solutionMap[key] || "⚠️ 此組合尚未設定結果，請補充條件至對照表。";
-let parts = raw.split("，");
-if (document.getElementById("groupBuy").checked && parts.length > 0) {
-  parts[0] += "（參與團購）";
-}
-let result = parts.join("，").replace(/，+/g, "，").replace(/^，|，$/g, "").trim();
-
-
+      let raw = solutionMap[key] || "⚠️ 此組合尚未設定結果，請補充條件至對照表。";
+      let result = raw.replace(/，?nan/g, "").replace(/，+/g, "，").replace(/^，|，$/g, "").trim();
     
     
 
@@ -170,3 +165,4 @@ let result = parts.join("，").replace(/，+/g, "，").replace(/^，|，$/g, "")
   </script>
 </body>
 </html>
+
