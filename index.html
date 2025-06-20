@@ -2,182 +2,104 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>移機查詢 v10-3 含設備品項</title>
+  <title>移機方案查詢 v10（對照表邏輯版）</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      padding: 2em;
-      max-width: 900px;
-      margin: auto;
-      background: #e6f5ff;
-    }
-
-    h1 {
-      text-align: center;
-      color: #265c8a;
-    }
-
-    .block {
-      background: #fff;
-      padding: 1.2em;
-      border-radius: 10px;
-      margin-bottom: 2em;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-      display: block;
-      margin-bottom: .8em;
-      cursor: pointer;
-    }
-
-    input[type="radio"],
-    input[type="checkbox"] {
-      transform: scale(1.2);
-      margin-right: .5em;
-    }
-
-    #output,
-    #device {
-      white-space: pre-line;
-      background: #fff;
-      padding: 1em;
-      border-radius: 10px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-      margin-top: 1em;
-    }
-
-    button {
-      margin-right: 1em;
-      padding: .6em 1.2em;
-      font-size: 1em;
-      background-color: #2196F3;
-      color: white;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #1976D2;
-    }
-
-    .radio-group {
-      display: block;
-    }
-
-    .radio-group label {
-      display: block;
-      margin-bottom: 0.5em;
-    }
-
-    .radio-group input[type="radio"] {
-      margin-right: 5px;
-    }
-
-    .block {
-      margin-bottom: 2em;
-    }
-
-    .result {
-      white-space: pre-line;
-      background: #fff;
-      padding: 1em;
-      border-radius: 10px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-      margin-top: 1em;
-    }
+    body { font-family: sans-serif; padding: 2em; max-width: 900px; margin: auto; background: #e6f5ff; }
+    h1 { text-align: center; color: #265c8a; }
+    .question-block { background: #fff; padding: 1em; border-radius: 8px; margin-bottom: 2em; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    table { width: 100%; border-spacing: 10px; }
+    td { width: 50%; vertical-align: top; }
+    label { display: block; margin-bottom: .5em; cursor: pointer; }
+    input[type="radio"] { margin-right: .5em; transform: scale(1.2); }
+    input[type="checkbox"] { margin-right: .5em; transform: scale(1.2); }
+    button { margin-right: .5em; padding: .5em 1em; font-size: 1em; }
+    #output { white-space: pre-line; background: #fff; padding: 1em; border-radius: 8px; min-height: 3em; margin-top: 1em; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body>
 
-<h1>移機查詢（含設備品項）</h1>
+<h1>移機方案查詢 (對照表邏輯版)</h1>
 
-<!-- 第一區段：題組一、二、三 -->
-<div class="block inline-group">
-  <h2>1️⃣ 舊址設備類型</h2>
-  <div class="radio-group">
-    <label><input type="radio" name="old" value="乙太">乙太</label>
-    <label><input type="radio" name="old" value="光化F(押金)">光化F(押金)</label>
-    <label><input type="radio" name="old" value="光化F(贈品)">光化F(贈品)</label>
-    <label><input type="radio" name="old" value="光化F(自購)">光化F(自購)</label>
-    <label><input type="radio" name="old" value="光化FP(贈品)">光化FP(贈品)</label>
-    <label><input type="radio" name="old" value="光化FP(自購)">光化FP(自購)</label>
-  </div>
-
-  <h2>2️⃣ 新址設備架構</h2>
-  <div class="radio-group">
-    <label><input type="radio" name="new" value="乙太">乙太</label>
-    <label><input type="radio" name="new" value="光化F">光化F</label>
-    <label><input type="radio" name="new" value="光化FP">光化FP</label>
-  </div>
-
-  <h2>3️⃣ 移機方案</h2>
-  <div class="radio-group">
-    <label><input type="radio" name="plan" value="提前續繳">提前續繳8900/6000元，免收移機施工費用</label>
-    <label><input type="radio" name="plan" value="舊址備註">舊址續繳備註此次免收移機施工費用</label>
-    <label><input type="radio" name="plan" value="支付1200">支付移機施工費用1200元</label>
-    <label><input type="radio" name="plan" value="優待800">用戶抱怨，優待移機施工費用800元</label>
-  </div>
+<div class="question-block">
+  <h2>1️⃣ 請選擇「舊址設備類型」</h2>
+  <label><input type="radio" name="oldArch" value="乙太"> 舊址為乙太(網路線)社區</label>
+  <label><input type="radio" name="oldArch" value="光化F"> 舊址為光纖社區 (需光轉器)</label>
+  <label><input type="radio" name="oldArch" value="光化FP(贈品)"> 舊址為光纖社區，光轉器為贈品</label>
+  <label><input type="radio" name="oldArch" value="光化FP(押金)"> 舊址為光纖社區，光轉器付押金</label>
 </div>
 
-<!-- 第二區段：題組四 補充條件 -->
-<div class="block inline-group">
-  <h2>4️⃣ 補充條件</h2>
-  <strong>⚠️ 務必提醒用戶：</strong>
-  <label><input type="checkbox" id="refundPolicy">已申明退費規範</label>
-  <label><input type="checkbox" id="transferMonth">待新址結單後月份轉移</label>
-  <strong>🔔 補充提醒（依當下情境判斷是否說明）：</strong>
-  <label><input type="checkbox" id="groupBuy">可參與團購優惠</label>
-  <label><input type="checkbox" id="ap保固">舊址有終保AP</label>
+<div class="question-block">
+  <h2>2️⃣ 請選擇「新址設備架構」</h2>
+  <label><input type="radio" name="newArch" value="乙太"> 新址為乙太(網路線)社區</label>
+  <label><input type="radio" name="newArch" value="光化F"> 新址為光纖社區 (需光轉器)</label>
+</div>
+
+<div class="question-block">
+  <h2>3️⃣ 請選擇「移機方案/收費方式」</h2>
+  <label><input type="radio" name="plan" value="提前續繳"> 提前續繳新方案，免收移機費</label>
+  <label><input type="radio" name="plan" value="舊址備註"> 舊址有備註免移機費</label>
+  <label><input type="radio" name="plan" value="支付1200"> 支付1200元移機施工費</label>
+  <label><input type="radio" name="plan" value="優待800"> 支付優待價800元移機施工費</label>
+</div>
+
+<div class="question-block">
+  <h2>4️⃣ 其他條件 (若無可略過)</h2>
+  <label><input type="checkbox" id="refundPolicy"> 已申明退費規範</label>
+  <label><input type="checkbox" id="transferMonth"> 待新址結單後月份轉移</label>
+  <h3>📎 補充提醒：</h3>
+  <label><input type="checkbox" id="groupBuy"> 可參與團購優惠</label>
+  <label><input type="checkbox" id="ap保固"> 舊址有終保AP</label>
 </div>
 
 <button onclick="generate()">產生移機方案說明</button>
+<button onclick="copyResult()">複製方案文字</button>
 
-<div id="output" class="result"></div>
-<div id="device" class="result"></div>
+<div class="question-block" id="output" style="min-height: 4em;"></div>
 
 <script>
-const solutionMap = {
-  "乙太|乙太|提前續繳": {"說明": "提前續繳8900/6000元，免收移機施工費用", "設備品項": "新址無需光轉器設備"},
-  "乙太|乙太|舊址備註": {"說明": "免收移機施工費用", "設備品項": "新址無需光轉器設備"},
-  "乙太|乙太|支付1200": {"說明": "移機當日支付1200元移機施工費用", "設備品項": "新址無需光轉器設備"},
-  "乙太|乙太|優待800": {"說明": "移機當日支付800元移機施工費用", "設備品項": "新址無需光轉器設備"},
-  "光化F(贈品)|乙太|提前續繳": {"說明": "提前續繳8900/6000元，免收移機施工費用，光轉器(贈品)沿用", "設備品項": "光纖贈品沿用(TP-LINK FC311B-3)*1=0"},
-  "光化F(贈品)|乙太|舊址備註": {"說明": "免收移機施工費用，光轉器(贈品)沿用", "設備品項": "光纖贈品沿用(TP-LINK FC311B-3)*1=0"},
-  "光化F(贈品)|乙太|支付1200": {"說明": "移機當日支付1200元移機施工費用，光轉器(贈品)沿用", "設備品項": "光纖贈品沿用(TP-LINK FC311B-3)*1=0"},
-  "光化F(贈品)|乙太|優待800": {"說明": "移機當日支付800元移機施工費用，光轉器(贈品)沿用", "設備品項": "光纖贈品沿用(TP-LINK FC311B-3)*1=0"},
-  // 更多邏輯可以在這裡添加
-};
+  const solutionMap = {
+    "乙太|乙太|提前續繳": "提前續繳8900/6000元，免收移機施工費用，nan",
+    "乙太|乙太|舊址備註": "免收移機施工費用，nan",
+    "乙太|乙太|支付1200": "移機當日支付1200元移機施工費用，nan",
+    "乙太|乙太|優待800": "移機當日支付800元移機施工費用，nan",
+    "乙太|光化F|提前續繳": "提前續繳8900/6000元，免收移機施工費用，光轉器屬贈品(價值600元)",
+    "乙太|光化F|舊址備註": "免收移機施工費用，加購光轉器600元",
+    "乙太|光化F|支付1200": "移機當日支付1200元移機施工費用，加購光轉器600元",
+    "乙太|光化F|優待800": "移機當日支付800元移機施工費用，加購光轉器600元",
+    "乙太|光化FP(贈品)|提前續繳": "提前續繳8900/6000元，免收移機施工費用，光轉器(贈品)沿用",
+    // 更多方案邏輯...
+  };
 
-function generate() {
-  const old = document.querySelector('input[name="old"]:checked')?.value;
-  const nw = document.querySelector('input[name="new"]:checked')?.value;
-  const plan = document.querySelector('input[name="plan"]:checked')?.value;
-
-  if (!old || !nw || !plan) {
-    document.getElementById("output").textContent = "請完整選擇三項條件";
-    document.getElementById("device").textContent = "";
-    return;
+  function generate() {
+    const old = document.querySelector('input[name="oldArch"]:checked')?.value;
+    const nw = document.querySelector('input[name="newArch"]:checked')?.value;
+    const plan = document.querySelector('input[name="plan"]:checked')?.value;
+    const key = old + "|" + nw + "|" + plan;
+    
+    let raw = solutionMap[key] || "⚠️ 此組合尚未設定結果，請補充條件至對照表。";
+    let result = raw.replace(/，?nan/g, "").replace(/，+/g, "，").replace(/^，|，$/g, "").trim();
+    
+    const extras = [];
+    if (document.getElementById("ap保固").checked) extras.push("終保AP沿用需設定");
+    if (document.getElementById("refundPolicy").checked) extras.push("退費規範已說明");
+    if (document.getElementById("transferMonth").checked) extras.push("待新址結單後月份轉移");
+    if (document.getElementById("groupBuy").checked) {
+      result = result.replace("移機施工費用", "移機施工費用（參與團購）");
+    }
+    if (extras.length > 0) result += "，" + extras.join("，");
+    document.getElementById("output").textContent = result;
   }
 
-  const key = old + "|" + nw + "|" + plan;
-  const data = solutionMap[key];
-
-  let result = data?.說明 || "⚠️ 尚未設定方案";
-  if (document.getElementById("groupBuy").checked)
-    result = result.replace("施工費用", "施工費用（參與團購）");
-
-  const extras = [];
-  if (document.getElementById("refundPolicy").checked) extras.push("退費規範已說明");
-  if (document.getElementById("transferMonth").checked) extras.push("待新址結單後月份轉移");
-  if (document.getElementById("ap保固").checked) extras.push("終保AP沿用需設定");
-
-  if (extras.length > 0) result += "，" + extras.join("，");
-
-  document.getElementById("output").textContent = result;
-  document.getElementById("device").textContent = "📦 工單設備品項：" + (data?.設備品項 || "未設定");
-}
+  function copyResult() {
+    const text = document.getElementById("output").textContent;
+    if (!text) {
+      alert("請先產生方案內容！");
+      return;
+    }
+    navigator.clipboard.writeText(text).then(() => {
+      alert("已複製方案內容！");
+    });
+  }
 </script>
 
 </body>
