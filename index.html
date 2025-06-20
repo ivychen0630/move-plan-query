@@ -4,19 +4,89 @@
   <meta charset="UTF-8" />
   <title>移機查詢 v10-3 含設備品項</title>
   <style>
-    body { font-family: 'Arial', sans-serif; padding: 2em; max-width: 900px; margin: auto; background: #e6f5ff; }
-    h1 { text-align: center; color: #265c8a; }
-    .block { background: #fff; padding: 1.2em; border-radius: 10px; margin-bottom: 2em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    label { display: block; margin-bottom: .8em; cursor: pointer; }
-    input[type="radio"], input[type="checkbox"] { transform: scale(1.2); margin-right: .5em; }
-    #output, #device { white-space: pre-line; background: #fff; padding: 1em; border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-top: 1em; }
-    button { margin-right: 1em; padding: .6em 1.2em; font-size: 1em; background-color: #2196F3; color: white; border-radius: 5px; border: none; cursor: pointer; }
-    button:hover { background-color: #1976D2; }
-    .radio-group { display: block; /* 設定為 block，使選項垂直排列 */ }
-    .radio-group label { display: block; /* 讓每個選項成為區塊元素，直列顯示 */ margin-bottom: 0.5em; /* 設定選項間的間距 */ }
-    .radio-group input[type="radio"] { margin-right: 5px; /* 調整圓形選項框與文字的間距 */ }
-    .block { margin-bottom: 2em; }
-    .result { white-space: pre-line; background: #fff; padding: 1em; border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-top: 1em; }
+    body {
+      font-family: 'Arial', sans-serif;
+      padding: 2em;
+      max-width: 900px;
+      margin: auto;
+      background: #e6f5ff;
+    }
+
+    h1 {
+      text-align: center;
+      color: #265c8a;
+    }
+
+    .block {
+      background: #fff;
+      padding: 1.2em;
+      border-radius: 10px;
+      margin-bottom: 2em;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: .8em;
+      cursor: pointer;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: .5em;
+    }
+
+    #output,
+    #device {
+      white-space: pre-line;
+      background: #fff;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-top: 1em;
+    }
+
+    button {
+      margin-right: 1em;
+      padding: .6em 1.2em;
+      font-size: 1em;
+      background-color: #2196F3;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1976D2;
+    }
+
+    .radio-group {
+      display: block; /* 確保選項直列 */
+    }
+
+    .radio-group label {
+      display: block; /* 每個選項獨立一行 */
+      margin-bottom: 0.5em; /* 控制每個選項之間的間距 */
+    }
+
+    .radio-group input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .block {
+      margin-bottom: 2em;
+    }
+
+    .result {
+      white-space: pre-line;
+      background: #fff;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-top: 1em;
+    }
   </style>
 </head>
 <body>
