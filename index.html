@@ -12,9 +12,9 @@
     #output, #device { white-space: pre-line; background: #fff; padding: 1em; border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-top: 1em; }
     button { margin-right: 1em; padding: .6em 1.2em; font-size: 1em; background-color: #2196F3; color: white; border-radius: 5px; border: none; cursor: pointer; }
     button:hover { background-color: #1976D2; }
-    .radio-group { display: block; /* 設定為 block，使選項垂直排列 */ }
-    .radio-group label { display: block; /* 讓每個選項成為區塊元素，直列顯示 */ margin-bottom: 0.5em; /* 設定選項間的間距 */ }
-    .radio-group input[type="radio"] { margin-right: 5px; /* 調整圓形選項框與文字的間距 */ }
+    .radio-group { display: flex; flex-wrap: wrap; gap: 15px; /* 控制選項之間的間距 */ }
+    .radio-group label { display: inline-flex; align-items: center; margin-right: 10px; /* 控制選項間的間距 */ }
+    .radio-group input[type="radio"] { margin-right: 5px; }
     .block { margin-bottom: 2em; }
     .result { white-space: pre-line; background: #fff; padding: 1em; border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-top: 1em; }
   </style>
@@ -33,14 +33,12 @@
     <label><input type="radio" name="old" value="光化F(自購)">光化F(自購)</label>
     <label><input type="radio" name="old" value="光化FP(贈品)">光化FP(贈品)</label>
     <label><input type="radio" name="old" value="光化FP(自購)">光化FP(自購)</label>
-  </div>
 
   <h2>2️⃣ 新址設備架構</h2>
   <div class="radio-group">
     <label><input type="radio" name="new" value="乙太">乙太</label>
     <label><input type="radio" name="new" value="光化F">光化F</label>
     <label><input type="radio" name="new" value="光化FP">光化FP</label>
-  </div>
 
   <h2>3️⃣ 移機方案</h2>
   <div class="radio-group">
@@ -48,7 +46,6 @@
     <label><input type="radio" name="plan" value="舊址備註">舊址續繳備註此次免收移機施工費用</label>
     <label><input type="radio" name="plan" value="支付1200">支付移機施工費用1200元</label>
     <label><input type="radio" name="plan" value="優待800">用戶抱怨，優待移機施工費用800元</label>
-  </div>
 </div>
 
 <!-- 第二區段：題組四 補充條件 -->
