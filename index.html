@@ -2,130 +2,19 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>移機方案互動查詢頁面 v10</title>
+  <title>移機查詢 v10-3 含設備品項</title>
   <style>
-    /* --- 整體與基礎設定 --- */
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      padding: 2em 1em; /* 調整內邊距 */
-      max-width: 800px;
-      margin: auto;
-      background: #eaf6ff; /* 調整為更淡的藍色背景 */
-    }
-
-    /* --- 頂部圖示與標題 --- */
-    .header-icon {
-      display: block;
-      margin: 0 auto 1em;
-      width: 100px; /* 控制圖示大小 */
-    }
-    h1 {
-      text-align: center;
-      color: #333; /* 調整標題顏色 */
-      font-size: 1.8em;
-      margin-bottom: 1.5em;
-    }
-
-    /* --- 主要內容卡片 --- */
-    .main-content-block {
-      background: #fff;
-      padding: 2em;
-      border-radius: 15px; /* 圓角更明顯 */
-      margin-bottom: 2em;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    /* --- 卡片內標題 --- */
-    .page-subtitle {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #265c8a;
-      border-bottom: 2px solid #eaf6ff;
-      padding-bottom: 0.8em;
-      margin-top: 0;
-      margin-bottom: 2em;
-    }
-    .section-title {
-      font-weight: bold;
-      margin-top: 1.5em;
-      margin-bottom: 1em;
-      color: #333;
-    }
-
-    /* --- 選項排版網格 --- */
-    .options-grid-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* 建立兩欄等寬網格 */
-      gap: 0.8em 1.5em; /* 行間距 & 欄間距 */
-    }
-    .options-grid-1col {
-      display: grid;
-      grid-template-columns: 1fr; /* 單欄網格 */
-      gap: 0.8em;
-    }
-
-    /* --- 選項標籤樣式 --- */
-    label {
-      display: flex; /* 使用 flexbox 對齊文字與選項按鈕 */
-      align-items: center;
-      cursor: pointer;
-      padding: 5px 0;
-      color: #555;
-    }
-    label:hover {
-        color: #000;
-    }
-    input[type="radio"], input[type="checkbox"] {
-      transform: scale(1.2);
-      margin-right: .7em; /* 按鈕與文字的距離 */
-    }
-
-    /* --- 按鈕與輸出結果區塊 --- */
-    button {
-      display: block;
-      width: 100%;
-      margin: 1em 0;
-      padding: .8em 1.5em;
-      font-size: 1.1em;
-      font-weight: bold;
-      background-color: #265c8a;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-    button:hover {
-      background-color: #3277b4;
-    }
-    #output, #device {
-      white-space: pre-line;
-      background: #fff;
-      padding: 1.2em;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      margin-top: 1em;
-      border-left: 5px solid #265c8a;
-    }
-    #device {
-      border-left-color: #5cb85c;
-    }
-
-    /* --- RWD 響應式設計 --- */
-    /* 當螢幕寬度小於 600px 時，兩欄網格變為單欄 */
-    @media (max-width: 600px) {
-      .options-grid-2col {
-        grid-template-columns: 1fr;
-      }
-      body { padding: 1em; }
-      .main-content-block { padding: 1.5em; }
-    }
+    body { font-family: sans-serif; padding: 2em; max-width: 900px; margin: auto; background: #e6f5ff; }
+    h1 { text-align: center; color: #265c8a; }
+    .block { background: #fff; padding: 1.2em; border-radius: 10px; margin-bottom: 2em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    label { display: block; margin-bottom: .8em; cursor: pointer; }
+    input[type="radio"], input[type="checkbox"] { transform: scale(1.2); margin-right: .5em; }
+    #output, #device { white-space: pre-line; background: #fff; padding: 1em; border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-top: 1em; }
+    button { margin-right: 1em; padding: .6em 1.2em; font-size: 1em; }
   </style>
 </head>
 <body>
-
-<svg class="header-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 288l-48 0c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32zM96 288l-48 0c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32zM496 96c0-35.3-28.7-64-64-64l-48 0c0-35.3-28.7-64-64-64S256 0 256 0c-35.3 0-64 28.7-64 64l-48 0C108.7 64 80 92.7 80 128l0 128c0 17.7 14.3 32 32 32s32-14.3 32-32l0-128c0-17.7 14.3-32 32-32l224 0c17.7 0 32 14.3 32 32l0 128c0 17.7 14.3 32 32 32s32-14.3 32-32l0-128c0-17.7 14.3-32 32-32l0 0z" fill="#3277b4" opacity="0.5"/><path d="M496 224c-17.7 0-32 14.3-32 32l0 128c0 17.7-14.3 32-32 32l-320 0c-17.7 0-32-14.3-32-32l0-128c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 128c0 53 43 96 96 96l320 0c53 0 96-43 96-96l0-128c0-17.7-14.3-32-32-32z" fill="#265c8a"/><path d="M144 192h224c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H144c-17.7 0-32-14.3-32-32v-96c0-17.7 14.3-32 32-32zm208 112v-64c0-8.8-7.2-16-16-16H176c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16h160c8.8 0 16-7.2 16-16z" fill="#fdbd40"/></svg>
-
+  
 <h1>移機方案互動查詢頁面 v10</h1>
 
 <div class="main-content-block">
