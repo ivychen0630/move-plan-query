@@ -12,18 +12,18 @@
     #output, #device { white-space: pre-line; background: #fff; padding: 1em; border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-top: 1em; }
     button { margin-right: 1em; padding: .6em 1.2em; font-size: 1em; background-color: #2196F3; color: white; border-radius: 5px; border: none; cursor: pointer; }
     button:hover { background-color: #1976D2; }
-    .question-block { background: #fff; padding: 1em; border-radius: 8px; margin-bottom: 2em; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .result { background: #e3f2fd; padding: 1em; border-left: 5px solid #2196f3; margin-top: 2em; border-radius: 6px; font-weight: bold; }
-    .required { color: #d32f2f; }
-    table { width: 100%; border-spacing: 10px; }
-    td { width: 50%; vertical-align: top; }
-    .label-title { font-weight: bold; margin-top: 0.5em; display: block; }
+    .radio-group { display: flex; flex-wrap: wrap; gap: 15px; /* 控制選項之間的間距 */ }
+    .radio-group label { display: inline-flex; align-items: center; margin-right: 10px; /* 控制選項間的間距 */ }
+    .radio-group input[type="radio"] { margin-right: 5px; }
+    .block { margin-bottom: 2em; }
+    .result { white-space: pre-line; background: #fff; padding: 1em; border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); margin-top: 1em; }
   </style>
 </head>
 <body>
 
 <h1>移機查詢（含設備品項）</h1>
 
+<!-- 第一區段：題組一、二、三 -->
 <div class="block inline-group">
   <h2>1️⃣ 舊址設備類型</h2>
   <div class="radio-group">
@@ -34,46 +34,25 @@
     <label><input type="radio" name="old" value="光化FP(贈品)">光化FP(贈品)</label>
     <label><input type="radio" name="old" value="光化FP(自購)">光化FP(自購)</label>
   </div>
-</div>
 
-<style>
-  .inline-group {
-    margin-bottom: 1em;
-  }
-
-  .radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px; /* 控制選項之間的間距 */
-  }
-
-  .radio-group label {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 10px; /* 控制選項間的間距 */
-  }
-
-  .radio-group input[type="radio"] {
-    margin-right: 5px;
-  }
-</style>
-
-<div class="question-block">
   <h2>2️⃣ 新址設備架構</h2>
-  <label><input type="radio" name="new" value="乙太">乙太</label>
-  <label><input type="radio" name="new" value="光化F">光化F</label>
-  <label><input type="radio" name="new" value="光化FP">光化FP</label>
-</div>
+  <div class="radio-group">
+    <label><input type="radio" name="new" value="乙太">乙太</label>
+    <label><input type="radio" name="new" value="光化F">光化F</label>
+    <label><input type="radio" name="new" value="光化FP">光化FP</label>
+  </div>
 
-<div class="question-block">
   <h2>3️⃣ 移機方案</h2>
-  <label><input type="radio" name="plan" value="提前續繳">提前續繳8900/6000元，免收移機施工費用</label>
-  <label><input type="radio" name="plan" value="舊址備註">舊址續繳備註此次免收移機施工費用</label>
-  <label><input type="radio" name="plan" value="支付1200">支付移機施工費用1200元</label>
-  <label><input type="radio" name="plan" value="優待800">用戶抱怨，優待移機施工費用800元</label>
+  <div class="radio-group">
+    <label><input type="radio" name="plan" value="提前續繳">提前續繳8900/6000元，免收移機施工費用</label>
+    <label><input type="radio" name="plan" value="舊址備註">舊址續繳備註此次免收移機施工費用</label>
+    <label><input type="radio" name="plan" value="支付1200">支付移機施工費用1200元</label>
+    <label><input type="radio" name="plan" value="優待800">用戶抱怨，優待移機施工費用800元</label>
+  </div>
 </div>
 
-<div class="question-block">
+<!-- 第二區段：題組四 補充條件 -->
+<div class="block inline-group">
   <h2>4️⃣ 補充條件</h2>
   <strong>⚠️ 務必提醒用戶：</strong>
   <label><input type="checkbox" id="refundPolicy">已申明退費規範</label>
